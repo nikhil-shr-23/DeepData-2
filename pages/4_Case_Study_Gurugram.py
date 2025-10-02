@@ -26,7 +26,6 @@ intro_text = (
 )
 st.write(intro_text)
 
-# --- Gurugram context metrics ---
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -53,7 +52,6 @@ with col4:
     cap = leg1["Capacity_Specifications"].iloc[0] if not leg1.empty else "~5000 cumecs"
     st.info(f"Infrastructure: Primary Drainage Capacity: {cap.split()[0]} {cap.split()[1] if len(cap.split())>1 else ''}")
 
-# --- Gurugram Analytics (CSV-only) ---
 colA, colB = st.columns([1.2, 1])
 
 with colA:
@@ -86,7 +84,6 @@ with colB:
 st.subheader("Stormwater Infrastructure Snapshot")
 inf = ctx["infrastructure"].copy()
 if not inf.empty:
-    # Display table and a simple count by type
     st.dataframe(inf, use_container_width=True, height=300)
     counts = inf["Infrastructure_Type"].value_counts().reset_index()
     counts.columns = ["Infrastructure_Type", "count"]
@@ -96,7 +93,6 @@ if not inf.empty:
 else:
     st.write("No infrastructure data available.")
 
-# Download section and note
 st.subheader("Download Gurugram Datasets")
 col_d1, col_d2 = st.columns(2)
 with col_d1:

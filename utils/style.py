@@ -2,29 +2,28 @@ from __future__ import annotations
 import streamlit as st
 
 PALETTE = {
-    "primary": "#2B8CBE",   # blue
-    "secondary": "#74A9CF", # light blue
-    "accent": "#31A354",    # green
-    "warning": "#FDAE6B",   # orange
-    "danger": "#DE2D26",    # red
-    "muted": "#6B7280",     # gray-500
+    "primary": "#2B8CBE",
+    "secondary": "#74A9CF",
+    "accent": "#31A354",
+    "warning": "#FDAE6B",
+    "danger": "#DE2D26",
+    "muted": "#6B7280",
     "bg": "#F5F7FA",
 }
 
 RISK_COLORS = {
-    "Ponding Hotspot": "#DE2D26",   # red
-    "Low Lying": "#FDAE6B",        # orange
-    "Monitor": "#2B8CBE",          # blue
-    "High Risk Event": "#9C27B0",   # purple
+    "Ponding Hotspot": "#DE2D26",
+    "Low Lying": "#FDAE6B",
+    "Monitor": "#2B8CBE",
+    "High Risk Event": "#9C27B0",
 }
-
 
 def inject_global_css() -> None:
     css = f"""
     <style>
       /* Card style */
       .policy-card {{
-          border: 1px solid #e5e7eb;
+          border: 1px solid
           border-radius: 12px;
           background: white;
           padding: 1rem 1.25rem;
@@ -37,7 +36,7 @@ def inject_global_css() -> None:
           color: {PALETTE['primary']};
       }}
 
-      .subtle {{ color: #6B7280; }}
+      .subtle {{ color:
 
       /* Make metrics a bit more compact */
       div[data-testid="stMetricValue"] {{ font-weight: 700; }}
@@ -45,6 +44,5 @@ def inject_global_css() -> None:
     """
     st.markdown(css, unsafe_allow_html=True)
 
-
 def risk_color(category: str) -> str:
-    return RISK_COLORS.get(category, PALETTE["muted"])  # default gray
+    return RISK_COLORS.get(category, PALETTE["muted"])

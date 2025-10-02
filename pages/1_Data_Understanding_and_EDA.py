@@ -23,17 +23,14 @@ st.sidebar.title("Project: Urban Flood Risk Analytics")
 st.header("Data Understanding & Exploratory Data Analysis (EDA)")
 st.caption("Professional workflow: Data Understanding → Data Preparation → Question-driven Exploration → Insights → Policy")
 
-# Load base data
 base_df = load_main_data()
 
-# Sidebar: preparation controls
 st.sidebar.subheader("Data Preparation")
 drop_dups = st.sidebar.checkbox("Drop duplicate segments (segment_id)", value=True)
 clip_outliers = st.sidebar.checkbox("Clip numeric outliers (1st–99th percentile)", value=True)
 
 eda_df = prepare_data(base_df, drop_duplicates=drop_dups, clip_outliers=clip_outliers)
 
-# --- Data Understanding ---
 colA, colB, colC = st.columns([1.2, 1, 1.2])
 with colA:
     st.subheader("Structure & Types")
@@ -48,7 +45,6 @@ with colC:
     summary = numeric_summary(eda_df)
     st.dataframe(summary, use_container_width=True, height=300)
 
-# Quick stats row
 k1, k2, k3, k4 = st.columns(4)
 with k1:
     st.metric("Rows", len(eda_df))
@@ -61,32 +57,26 @@ with k4:
 
 st.divider()
 
-# --- Question-driven EDA ---
 st.subheader("Targeted EDA Questions")
 st.write("Below are 10 targeted analyses to understand flood risk drivers in the main dataset.")
 
-# Q1
 with st.expander("Q1. What is the overall distribution of Primary_Risk categories?"):
     risk_counts = eda_df["Primary_Risk"].value_counts().reset_index()
     risk_counts.columns = ["Primary_Risk", "count"]
     fig = px.bar(risk_counts, x="Primary_Risk", y="count", color="Primary_Risk", color_discrete_map=RISK_COLORS)
     fig.update_layout(showlegend=False, height=380, margin=dict(t=10, l=10, r=10, b=10))
 st.plotly_chart(fig, use_container_width=True)
-# Short answer
 total = int(risk_counts["count"].sum())
 top_label = risk_counts.sort_values("count", ascending=False).iloc[0]
 st.write(f"Out of {total} segments, the most common primary category is {top_label['Primary_Risk']} ({int(top_label['count'])} segments).")
 
-# Q2
 with st.expander("Q2. How does elevation vary across risk categories?"):
     fig = px.box(eda_df, x="Primary_Risk", y="elevation_m", color="Primary_Risk", color_discrete_map=RISK_COLORS)
     fig.update_layout(showlegend=False, height=400)
 st.plotly_chart(fig, use_container_width=True)
-# Short answer
 medians = eda_df.groupby("Primary_Risk")["elevation_m"].median().sort_values()
 st.write(f"Median elevation is lowest for {medians.index[0]} (~{medians.iloc[0]:.1f} m) and highest for {medians.index[-1]} (~{medians.iloc[-1]:.1f} m).")
 
-# Q3
 with st.expander("Q3. How does elevation correlate with rainfall intensity by risk?"):
     fig = px.scatter(
         eda_df, x="elevation_m", y="historical_rainfall_intensity_mm_hr",
@@ -96,37 +86,30 @@ with st.expander("Q3. How does elevation correlate with rainfall intensity by ri
     fig.update_layout(height=420)
     st.plotly_chart(fig, use_container_width=True)
 
-# Q4
 with st.expander("Q4. Which land uses carry the greatest burden of high-risk segments?"):
     hi = eda_df[eda_df["Primary_Risk"].isin(["Ponding Hotspot", "Low Lying", "High Risk Event"])].copy()
     land = (hi.groupby("land_use").size().reset_index(name="high_risk").sort_values("high_risk", ascending=False).head(15))
     fig = px.bar(land, x="land_use", y="high_risk", color="high_risk", color_continuous_scale=["#FEE391", "#F03B20"], labels={"high_risk": "High-risk segments"})
     fig.update_layout(height=420)
 st.plotly_chart(fig, use_container_width=True)
-# Short answer
 if not land.empty:
     st.write(f"Top burden by land use: {land.iloc[0]['land_use']} with {int(land.iloc[0]['high_risk'])} high-risk segments.")
 
-# Q5
 with st.expander("Q5. Do soil groups differ in their risk profiles?"):
     agg = eda_df.groupby(["soil_group", "Primary_Risk"]).size().reset_index(name="count")
     fig = px.bar(agg, x="soil_group", y="count", color="Primary_Risk", barmode="stack", color_discrete_map=RISK_COLORS)
     fig.update_layout(height=420)
 st.plotly_chart(fig, use_container_width=True)
-# Short answer
 top_soil_df = agg.groupby("soil_group")["count"].sum().sort_values(ascending=False)
 top_soil = top_soil_df.index[0] if not top_soil_df.empty else "Unknown"
 st.write(f"Soil group {top_soil} contributes the most segments; clayey groups (C/D) often align with ponding risk.")
 
-# Q6
 with st.expander("Q6. How does drainage density vary with risk?"):
     fig = px.violin(eda_df, x="Primary_Risk", y="drainage_density_km_per_km2", color="Primary_Risk", box=True, points=False, color_discrete_map=RISK_COLORS)
     fig.update_layout(showlegend=False, height=420)
 st.plotly_chart(fig, use_container_width=True)
-# Short answer
 st.write("Higher drainage density tends to associate with Monitor segments; sparse networks align with higher-risk categories.")
 
-# Q7
 with st.expander("Q7. Are high-risk segments farther from formal storm drains?"):
     if "storm_drain_proximity_m" in eda_df.columns and not eda_df["storm_drain_proximity_m"].dropna().empty:
         temp = eda_df.copy()
@@ -138,7 +121,6 @@ with st.expander("Q7. Are high-risk segments farther from formal storm drains?")
     else:
         st.info("Storm drain proximity data not available in the main CSV. Skipping this analysis.")
 
-# Q8
 with st.expander("Q8. Which cities have the highest share of high-risk segments (rate)?"):
     rates = high_risk_rate_by_city(eda_df).head(15)
     fig = px.bar(rates, x="city_name", y="rate_%", color="rate_%", color_continuous_scale=["#FEE391", "#F03B20"], labels={"rate_%": "High-risk rate (%)"})
@@ -147,7 +129,6 @@ st.plotly_chart(fig, use_container_width=True)
 if not rates.empty:
     st.write(f"Highest high-risk rate observed in {rates.iloc[0]['city_name']} (~{rates.iloc[0]['rate_%']:.1f}%).")
 
-# Q9
 with st.expander("Q9. Are ‘High Risk Event’ segments concentrated by continent?"):
     scope = eda_df[eda_df["Primary_Risk"] == "High Risk Event"]
     cont = scope["Continent"].value_counts().reset_index()
@@ -158,7 +139,6 @@ st.plotly_chart(fig, use_container_width=True)
 if not cont.empty:
     st.write(f"Most High Risk Event segments are recorded in {cont.iloc[0]['Continent']}.")
 
-# Q10
 with st.expander("Q10. What correlations exist among numerical features?"):
     corr = correlations(eda_df)
     fig = px.imshow(corr, text_auto=True, color_continuous_scale=["#FEE391", "#F03B20"], aspect="auto")
@@ -166,9 +146,7 @@ with st.expander("Q10. What correlations exist among numerical features?"):
 st.plotly_chart(fig, use_container_width=True)
 st.write("Correlations are modest overall; drainage density shows a mild negative relation to high-risk indicators, while rainfall intensity trends positively.")
 
-# Q11
 with st.expander("Q11. City-level latitude/longitude correlation with high-risk rate (animated)"):
-    # Aggregate to city level
     city_stats = (
         eda_df.groupby("city_name").agg(
             lat=("latitude", "mean"),
@@ -178,13 +156,11 @@ with st.expander("Q11. City-level latitude/longitude correlation with high-risk 
             elev=("elevation_m", "mean"),
         ).reset_index()
     )
-    # Correlation table for lat/lon vs high-risk rate
     corr2 = city_stats[["lat", "lon", "hr_rate"]].corr()
     fig_corr2 = px.imshow(corr2, text_auto=True, color_continuous_scale=["#FEE391", "#F03B20"], aspect="auto")
     fig_corr2.update_layout(height=360)
     st.plotly_chart(fig_corr2, use_container_width=True)
 
-    # Animated scatter: lat/lon sized by high-risk rate, animated by rainfall quartile
     if not city_stats["rain"].dropna().empty:
         try:
             city_stats["rain_bin"] = pd.qcut(city_stats["rain"], q=4, labels=["Q1","Q2","Q3","Q4"], duplicates="drop")
@@ -204,5 +180,4 @@ with st.expander("Q11. City-level latitude/longitude correlation with high-risk 
     fig_anim.update_layout(height=520)
     st.plotly_chart(fig_anim, use_container_width=True)
 
-# Closing note
 st.info("These findings support flood mitigation strategies like prioritizing ponding hotspots with poor drainage access, upgrading open channels to grated inlets (where present), and steering development away from low-lying basins.")

@@ -17,7 +17,6 @@ df = load_main_data()
 
 st.header("Investigating the Drivers of Pluvial Flood Risk")
 
-# Tabs for themes
 tab1, tab2, tab3 = st.tabs(["Topography & Land Use", "Infrastructure & Hydrology", "Correlational Analysis"])
 
 with tab1:
@@ -54,7 +53,7 @@ with tab1:
         counts = hotspots["land_use"].fillna("Unknown").value_counts().reset_index()
         counts.columns = ["land_use", "count"]
         fig_treemap = px.treemap(counts, path=["land_use"], values="count", color="count",
-                                 color_continuous_scale=["#FEE391", "#F03B20"])  # yellow → red
+                                 color_continuous_scale=["#FEE391", "#F03B20"])
         fig_treemap.update_layout(margin=dict(t=10, l=10, r=10, b=10), height=420)
         st.plotly_chart(fig_treemap, use_container_width=True)
 
@@ -84,11 +83,9 @@ with tab2:
         else:
             st.info("Storm drain proximity data not available in the main CSV. Skipping this analysis.")
 
-    # Animated storm-drain visualization (optional)
     if "storm_drain_proximity_m" in df.columns and not df["storm_drain_proximity_m"].dropna().empty:
         st.subheader("Animated: Proximity vs. Drainage Density by Risk")
         temp_anim = df.copy()
-        # Bin rainfall intensity to reduce frames
         if not temp_anim["historical_rainfall_intensity_mm_hr"].dropna().empty:
             try:
                 temp_anim["rain_bin"] = pd.qcut(temp_anim["historical_rainfall_intensity_mm_hr"], q=4, labels=["Q1","Q2","Q3","Q4"], duplicates="drop")
@@ -107,7 +104,6 @@ with tab2:
         fig_anim2.update_layout(height=480, margin=dict(t=10, l=10, r=10, b=10))
         st.plotly_chart(fig_anim2, use_container_width=True)
 
-    # Storm drain type proportion (optional)
     st.subheader("Storm Drain Type vs. Risk Proportion")
     if "storm_drain_type" in df.columns and not df["storm_drain_type"].dropna().empty:
         tmp = df.copy()

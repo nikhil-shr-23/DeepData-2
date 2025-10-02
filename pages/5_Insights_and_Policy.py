@@ -17,7 +17,6 @@ df = load_main_data()
 
 st.header("From Data to Action: Strategies for Urban Flood Resilience")
 
-# ---------- Key Insights (each inside an expander) ----------
 insights = [
     (
         "Insight 1: Low-lying segments with clay-like soils (Group D) are disproportionately identified as ponding hotspots.",
@@ -96,7 +95,6 @@ for title, key in insights:
             st.plotly_chart(fig, use_container_width=True)
             st.write("Built-up land uses (commercial, residential) dominate high-risk segments, reflecting imperviousness and runoff concentration.")
 
-# ---------- Policy Recommendations ----------
 st.subheader("Actionable Policy Recommendations")
 
 card_css = "policy-card"

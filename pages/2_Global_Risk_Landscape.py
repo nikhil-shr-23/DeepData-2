@@ -16,7 +16,6 @@ df = load_main_data()
 
 st.header("Mapping Flood Vulnerabilities Worldwide")
 
-# Sidebar filters
 st.sidebar.subheader("Filters")
 city_list = st.sidebar.multiselect("City", options=city_options(df), default=[])
 primary_sel = st.sidebar.selectbox("Primary Risk", options=risk_categories(df), index=0)
@@ -27,7 +26,6 @@ if city_list:
 if primary_sel != "All":
     filtered = filtered[filtered["Primary_Risk"] == primary_sel]
 
-# Dynamic filter description
 desc_parts = []
 if city_list:
     if len(city_list) == 1:
@@ -43,7 +41,6 @@ else:
 filters_desc = " • ".join(desc_parts)
 st.caption(filters_desc)
 
-# --- Map (Scattergeo) ---
 cat_order = ["Ponding Hotspot", "Low Lying", "High Risk Event", "Monitor"]
 fig_map = go.Figure()
 for cat in [c for c in cat_order if c in filtered["Primary_Risk"].unique()]:
@@ -75,12 +72,10 @@ fig_map.update_layout(
 
 st.plotly_chart(fig_map, use_container_width=True)
 
-# --- Comparative Analysis ---
 col1, col2 = st.columns(2)
 
 with col1:
     st.subheader(f"Top 15 Cities by High-Risk Segments — {filters_desc}")
-    # Use filtered data but restrict to hotspot + low-lying categories
     hi = filtered[filtered["Primary_Risk"].isin(["Ponding Hotspot", "Low Lying"])].copy()
     top = (
         hi.groupby("city_name").size().sort_values(ascending=False).head(15).reset_index(name="count")

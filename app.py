@@ -12,7 +12,6 @@ st.sidebar.title("Project: Urban Flood Risk Analytics")
 
 df = load_main_data()
 
-# ---------- Header ----------
 st.title("Urban Pluvial Flood Risk: A Global Analysis for a Resilient Future")
 st.caption("Deep Data Hackathon 2.0 • Urban Resilience Consortium")
 
@@ -20,8 +19,6 @@ st.write(
     "This dashboard centers on the main urban_pluvial_flood_risk_dataset.csv to analyze urban road segments and identify pluvial flood vulnerabilities for policymakers and urban planners. It synthesizes topography, infrastructure, hydrology, and land use to reveal actionable insights. Gurugram context is included as a secondary, local example."
 )
 
-
-# ---------- Key Metrics ----------
 col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric("Total Cities Analyzed", int(df["city_name"].nunique()))
@@ -37,11 +34,9 @@ with col4:
     )
     st.metric("Most Common Land Use at Risk", common_lu)
 
-# ---------- Snapshot ----------
 with st.expander("Explore the Raw Data", expanded=False):
     st.dataframe(df, use_container_width=True, height=420)
 
-# ---------- More KPIs from the main dataset ----------
 with st.expander("More KPIs from Main Dataset", expanded=False):
     tab_num, tab_cat = st.tabs(["Numerical KPIs", "Categorical Top Values"])
     with tab_num:
