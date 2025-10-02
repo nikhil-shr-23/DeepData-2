@@ -1,0 +1,21 @@
+Water_Body_Type,Name_Location,Quantitative_Value,Unit_Measurement,Status_Condition,Environmental_Impact
+Major River,Sahibi River,1.0,count,Ecologically dead,High negative
+Historical River Status,Sahibi River System,100.0,percentage of historical flow,Pristine (historical),Positive (historical)
+Current River Status,Najafgarh Drain,5.0,percentage of historical flow,Heavily polluted,High negative
+Natural Water Bodies (1956),District-wide count,640.0,total count,Historical baseline,Positive baseline
+Current Water Bodies (2024),District-wide count,251.0,total count,Current status,Degraded ecosystem
+Water Bodies Lost,Lost water bodies,389.0,total count,Environmental loss,Severe biodiversity loss
+Large Lake,Damdama Lake,3000.0,acres,Active recreational lake,Positive recreation/tourism
+National Park Lake,Sultanpur Lake,200.0,acres,Protected bird sanctuary,High conservation value
+Wetland Sanctuary,Basai Wetland,50.0,acres,Important Bird Area (IBA),Critical biodiversity hotspot
+Artificial Reservoir,Various locations,15.0,count,Mixed conditions,Variable impact
+Historical Canals,Historical drainage network,60.0,count,Completely lost,Complete ecosystem loss
+Current Functional Drains,Current operational drains,4.0,count,Partially functional,Limited functionality
+Groundwater Table (Min Depth),Shallowest groundwater area,176.78,meters above sea level,Good access depth,Moderate stress
+Groundwater Table (Max Depth),Deepest groundwater area,274.85,meters above sea level,Difficult access depth,High extraction stress
+Groundwater Extraction Rate,District-wide extraction,214.0,percentage of sustainable rate,Critical overexploitation,Unsustainable depletion
+Annual Groundwater Recharge,District-wide recharge,100.0,percentage baseline,Insufficient recharge,Inadequate replenishment
+Monsoon Dependency,Rainfall dependent recharge,85.0,percentage dependency,Monsoon critical,Climate vulnerable
+Water Body Size Category (>100 acres),Large water bodies remaining,8.0,count,Mostly protected,Important conservation
+Water Body Size Category (10-100 acres),Medium water bodies remaining,45.0,count,Mixed protection status,Moderate conservation
+Water Body Size Category (<10 acres),Small water bodies remaining,198.0,count,Unprotected/encroached,High vulnerability

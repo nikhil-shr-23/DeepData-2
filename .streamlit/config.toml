@@ -1,0 +1,17 @@
+[theme]
+primaryColor = "#2B8CBE"          # blue
+backgroundColor = "#FFFFFF"        # white
+secondaryBackgroundColor = "#F5F7FA" # light gray
+textColor = "#0E1117"              # near-black
+font = "sans serif"
+
+[server]
+headless = true
+# Allow cross-origin embedding
+enableCORS = true
+enableXsrfProtection = false
+# Optional: listen on all interfaces when deploying
+address = "0.0.0.0"
+
+[browser]
+gatherUsageStats = false

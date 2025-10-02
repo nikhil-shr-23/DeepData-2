@@ -1,0 +1,13 @@
+Parameter,Value,Unit,Location_Reference,Data_Source
+Average Elevation,237,meters above sea level,City-wide average,Survey of India topographic maps
+Minimum Elevation,189,meters above sea level,Lowest point in district,Elevation mapping surveys
+Maximum Elevation,379,meters above sea level,Aravalli Hills peak,Aravalli range geological survey
+Total Area,733,square kilometers,Gurugram District boundary,District administrative records
+Elevation Range,190,meters,Min to Max elevation difference,Calculated from elevation data
+Topographical Type,Bowl-shaped,topographical classification,Overall city topography,Geological and topographical studies
+Geological Base,Quaternary alluvium with quartzite ridges,geological formation,Underlying geological structure,Central Ground Water Board reports
+Natural Gradient,78,meters elevation difference,Aravalli to Najafgarh drain,Hydrological flow analysis
+Slope Direction,Northeast to Northwest,cardinal direction,Natural water flow direction,Natural drainage pattern studies
+Surrounding Features,Aravalli Hills,mountain range,Eastern and southern boundaries,Geological Survey of India
+Bowl Depth,48,meters below city average,City center relative to hills,Topographical cross-section analysis
+Drainage Pattern,Radial outward from center,drainage flow pattern,Historical natural drainage,Historical drainage system mapping

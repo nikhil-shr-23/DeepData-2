@@ -1,0 +1,21 @@
+Infrastructure_Type,System_Name,Route_Coverage,Length_Area,Capacity_Specifications,Investment_Status
+Primary Drainage Leg,Leg-1 Drain,Nathupur → DLF Phase 3 → Udyog Vihar → Najafgarh,25.0,5000 cumec peak flow capacity,Operational - ongoing maintenance
+Primary Drainage Leg,Leg-2 Drain,Chakkarpur → Millennium City → Atul Kataria → Najafgarh,21.5,4500 cumec peak flow capacity,Operational - ongoing maintenance
+Primary Drainage Leg,Leg-3 (Badshahpur) Drain,Ghata Dam → Vatika Chowk → Hero Honda → Najafgarh,30.0,6000 cumec peak flow capacity,Operational - ongoing maintenance
+RCC Box Drain Project,Sectors 68-75 Drainage,Southern Peripheral Road Corridor,17.63,2x2 to 3x3 meter RCC box drains,Under construction - ₹51 crore
+RCC Box Drain Project,Sectors 112-115 Drainage,Dwarka Expressway Corridor,7.59,2x2 to 4x4 meter RCC box drains,Under construction - ₹32.8 crore
+Master Drain Construction,SPR Master Drain (Leg-IV),Vatika Chowk to NH-48,5.0,4x4 meter RCC box configuration,Planning phase - ₹85 crore estimated
+Pumping Station,Anti-backflow Station,Sector 115 Strategic Location,1.0,"50,000 liters per minute pumping",Operational - ₹15 crore
+Storm Drain Manholes,Storm Manholes City-wide,All major sectors and roads,450.0,900mm diameter with lifting keys,Installation ongoing - ₹25 crore
+Drain Fencing,Open Drain Safety Fencing,High-risk open drain locations,4.5,1.5 meter height galvanized fencing,Partially completed - ₹8 crore
+Storm Drain Inlets,Heavy Duty Storm Inlets,Main roads and sector boundaries,200.0,Heavy duty composite covers,Installation ongoing - ₹12 crore
+Drainage Investment,Total Infrastructure Investment,Entire Gurugram municipal area,733.0,Multi-phase infrastructure development,Total spent ₹503 crore (2016-2025)
+Emergency Drainage,Monsoon Emergency Response,Flood-prone zones coverage,15.0,Rapid response deployment capacity,Annual allocation ₹20 crore
+Natural Drainage Integration,Natural Channel Restoration,Historical water channels,8.0,Natural flow restoration design,Proposed - ₹40 crore
+Flood Control System,Najafgarh Drain Flood Control,Primary outfall management,25.0,Anti-flooding barrier system,Maintenance - ₹30 crore annual
+Drainage Maintenance,Annual Maintenance Program,Critical infrastructure points,100.0,Regular cleaning and debris removal,Annual budget ₹45 crore
+Water Treatment Integration,STP Integration Points,Wastewater treatment plants,6.0,Treated water discharge integration,Completed - ₹18 crore
+Smart Drainage Monitoring,IoT Sensor Network,Smart city infrastructure zones,50.0,Real-time water level monitoring,Pilot phase - ₹10 crore
+Community Drain Access,Public Access Points,Public spaces and communities,25.0,Safe community interaction points,Completed - ₹5 crore
+Industrial Drainage,Udyog Vihar and industrial sectors,Udyog Vihar and industrial sectors,45.0,Industrial waste pre-treatment,Operational - ₹75 crore
+Residential Drainage,Colony Internal Drainage,Residential sectors and colonies,150.0,Household stormwater management,Ongoing expansion - ₹60 crore
