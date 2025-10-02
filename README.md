@@ -53,6 +53,117 @@ This case study validates our global findings against real urban development pat
 
 ## Technical Architecture
 
+### System Architecture Overview
+
+```mermaid
+graph TB
+    A[Urban Flood Risk Dataset<br/>2,700+ segments, 50+ cities] --> B[Data Processing Pipeline]
+    B --> C[Feature Engineering]
+    C --> D[Risk Categorization]
+    D --> E[Interactive Dashboard]
+    
+    B --> F[Quality Assurance<br/>Missing Value Imputation]
+    B --> G[Geographic Rollups<br/>Country/Continent]
+    B --> H[Outlier Management<br/>1st-99th percentile]
+    
+    E --> I[Global Risk Landscape]
+    E --> J[Risk Factor Analysis]
+    E --> K[Policy Recommendations]
+    E --> L[Case Study: Gurugram]
+    
+    M[Secondary Data<br/>Gurugram Historical] --> L
+    
+    style A fill:#e1f5fe
+    style E fill:#f3e5f5
+    style K fill:#e8f5e8
+```
+
+### Data Flow Architecture
+
+```mermaid
+flowchart LR
+    A[Raw Data<br/>CSV Files] --> B[Data Utils<br/>Loading & Cleaning]
+    B --> C[Streamlit Pages]
+    C --> D[Interactive Visualizations<br/>Plotly Charts]
+    
+    subgraph "Data Pipeline"
+        E[Missing Value<br/>Handling] --> F[Feature<br/>Engineering]
+        F --> G[Risk Category<br/>Derivation]
+    end
+    
+    B --> E
+    G --> C
+    
+    subgraph "Page Structure"
+        H[1. Data Understanding<br/>& EDA]
+        I[2. Global Risk<br/>Landscape]
+        J[3. Risk Factor<br/>Deep Dive]
+        K[4. Case Study<br/>Gurugram]
+        L[5. Insights<br/>& Policy]
+    end
+    
+    C --> H
+    C --> I
+    C --> J
+    C --> K
+    C --> L
+    
+    style A fill:#ffebee
+    style D fill:#e3f2fd
+    style "Data Pipeline" fill:#f1f8e9
+    style "Page Structure" fill:#fff3e0
+```
+
+### Risk Assessment Workflow
+
+```mermaid
+flowchart TD
+    A[Urban Segment Data] --> B{Elevation Analysis}
+    B --> C[< 10m elevation?]
+    C -->|Yes| D[Low-lying Classification]
+    C -->|No| E[Standard Risk Assessment]
+    
+    D --> F{Drainage Infrastructure}
+    E --> F
+    F --> G[OpenChannel]
+    F --> H[Grated Inlet]
+    F --> I[None/Manhole]
+    
+    G --> J[Higher Risk Score]
+    H --> K[Lower Risk Score]
+    I --> L[Variable Risk Score]
+    
+    J --> M[Risk Categorization]
+    K --> M
+    L --> M
+    
+    M --> N[Ponding Hotspot<br/>6.9% of segments]
+    M --> O[Low Lying<br/>15.7% of segments]
+    M --> P[High Risk Event<br/>5.7% of segments]
+    M --> Q[Monitor<br/>68.4% of segments]
+    
+    N --> R[Priority Interventions]
+    O --> R
+    P --> R
+    Q --> S[Routine Monitoring]
+    
+    style A fill:#e1f5fe
+    style R fill:#ffebee
+    style S fill:#e8f5e8
+```
+
+### Global Impact Distribution
+
+```mermaid
+pie title Flood Risk Distribution by Continent
+    "Asia : 45%" : 45
+    "Europe : 23%" : 23
+    "North America : 18%" : 18
+    "Oceania : 8%" : 8
+    "Africa : 4%" : 4
+    "South America : 2%" : 2
+```
+
 ### Application Structure
 
 **Core Application**:
