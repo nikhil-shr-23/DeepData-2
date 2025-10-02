@@ -19,6 +19,7 @@ export default function Dashboard() {
   };
   
   const handleError = () => {
+    console.log('Iframe failed to load, likely due to authentication redirect or X-Frame-Options');
     setIsLoading(false);
     setHasError(true);
   };
@@ -51,14 +52,25 @@ export default function Dashboard() {
         <div className="absolute inset-0 bg-gray-900 flex items-center justify-center z-10">
           <div className="text-center">
             <div className="text-red-400 text-6xl mb-4">⚠️</div>
-            <div className="text-white text-xl font-medium font-montserrat mb-2">Failed to Load Dashboard</div>
-            <div className="text-white/60 text-sm mb-6">Please check your internet connection</div>
-            <button 
-              onClick={() => window.location.reload()}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors cursor-pointer"
-            >
-              Retry
-            </button>
+            <div className="text-white text-xl font-medium font-montserrat mb-2">Dashboard Requires Authentication</div>
+            <div className="text-white/60 text-sm mb-6 max-w-md mx-auto">
+              The Streamlit app cannot be loaded in an iframe due to authentication requirements. 
+              Click below to open it in a new tab.
+            </div>
+            <div className="space-x-4">
+              <button 
+                onClick={openInNewTab}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors cursor-pointer"
+              >
+                Open in New Tab
+              </button>
+              <button 
+                onClick={() => window.location.reload()}
+                className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg transition-colors cursor-pointer"
+              >
+                Retry Iframe
+              </button>
+            </div>
           </div>
         </div>
       )}
