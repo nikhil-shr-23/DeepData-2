@@ -15,7 +15,7 @@ from utils.data_utils import (
 )
 from utils.style import inject_global_css, RISK_COLORS
 
-st.set_page_config(page_title="Data Understanding & EDA | Urban Flood Risk Analytics", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Data Understanding & EDA | Urban Flood Risk Analytics", page_icon="", layout="wide")
 inject_global_css()
 
 st.sidebar.title("Project: Urban Flood Risk Analytics")

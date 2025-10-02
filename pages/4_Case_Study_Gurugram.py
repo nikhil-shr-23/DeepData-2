@@ -7,7 +7,7 @@ from utils.data_utils import load_gurugram_context
 from utils.style import inject_global_css
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="Case Study: Gurugram | Urban Flood Risk Analytics", page_icon="🇮🇳", layout="wide")
+st.set_page_config(page_title="Case Study: Gurugram | Urban Flood Risk Analytics", page_icon="", layout="wide")
 inject_global_css()
 
 st.sidebar.title("Project: Urban Flood Risk Analytics")

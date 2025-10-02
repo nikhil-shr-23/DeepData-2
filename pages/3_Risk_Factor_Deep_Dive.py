@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 from utils.data_utils import load_main_data
 from utils.style import inject_global_css, RISK_COLORS
 
-st.set_page_config(page_title="Risk Factor Deep Dive | Urban Flood Risk Analytics", page_icon="🔬", layout="wide")
+st.set_page_config(page_title="Risk Factor Deep Dive | Urban Flood Risk Analytics", page_icon="", layout="wide")
 inject_global_css()
 
 st.sidebar.title("Project: Urban Flood Risk Analytics")

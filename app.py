@@ -5,7 +5,7 @@ import plotly.express as px
 from utils.data_utils import load_main_data
 from utils.style import inject_global_css, PALETTE
 
-st.set_page_config(page_title="Urban Flood Risk Analytics", page_icon="🌊", layout="wide")
+st.set_page_config(page_title="Urban Flood Risk Analytics", page_icon="", layout="wide")
 inject_global_css()
 
 st.sidebar.title("Project: Urban Flood Risk Analytics")
